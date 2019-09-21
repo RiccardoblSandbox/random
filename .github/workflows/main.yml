@@ -7,7 +7,6 @@ on:
 jobs:
 
   Test:  
-    needs: [BuildNatives,BuildAndroidNatives]
     name: Build on ${{ matrix.osName }} jdk${{ matrix.jdk }}
     runs-on: ${{ matrix.os }}    
     strategy:
