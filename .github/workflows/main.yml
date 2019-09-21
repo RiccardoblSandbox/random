@@ -1,0 +1,37 @@
+
+name: Build
+on:
+  push:
+
+  
+jobs:
+
+  Test:  
+    needs: [BuildNatives,BuildAndroidNatives]
+    name: Build on ${{ matrix.osName }} jdk${{ matrix.jdk }}
+    runs-on: ${{ matrix.os }}    
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-18.04,windows-2019,macOS-10.14]
+        jdk: [8.x.x,11.x.x]
+        include:
+          - os: ubuntu-18.04
+            osName: linux
+            deploy: true
+          - os: windows-2019
+            osName: windows
+          - os: macOS-10.14
+            osName: mac 
+        exclude:
+          jdk: 11.x.x
+          deploy: true
+    steps:          
+    
+      - name: Clone the repo
+        shell: bash
+        run: |
+          echo ${{ matrix.osName }}
+          echo ${{ matrix.deploy }}
+          
+       
