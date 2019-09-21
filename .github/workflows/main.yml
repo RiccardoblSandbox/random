@@ -24,8 +24,8 @@ jobs:
           - os: macOS-10.14
             osName: mac 
         exclude:
-          jdk: 11.x.x
-          deploy: true
+          - jdk: 11.x.x
+            deploy: true
     steps:          
     
       - name: Clone the repo
